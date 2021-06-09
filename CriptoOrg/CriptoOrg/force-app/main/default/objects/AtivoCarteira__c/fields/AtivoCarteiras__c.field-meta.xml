@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AtivoCarteiras__c</fullName>
+    <description>Relacionamento entre a carteira e o ativo</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Relacionamento entre a carteira e o ativo</inlineHelpText>
+    <label>Carteira</label>
+    <referenceTo>Carteira__c</referenceTo>
+    <relationshipLabel>Ativo das Carteiras</relationshipLabel>
+    <relationshipName>AtivoCarteiras</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

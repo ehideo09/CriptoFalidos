@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VendidaPrejuizo</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Lc_Ordem</compactLayoutAssignment>
+    <label>Vendida com prejuizo</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Venda com Prejuizo</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tipo__c</picklist>
+        <values>
+            <fullName>Venda</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>
