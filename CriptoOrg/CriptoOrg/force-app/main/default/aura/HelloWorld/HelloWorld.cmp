@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <!--Declaração de variável-->
+    <aura:attribute name="nome" type="String" default="World"/>
+
+    <lightning:card title="Primeiro Componente">
+        <p class="slds-var-p-horizontal_small"> <!--Formata os objetos dentro da tag-->
+            <lightning:input name="UserName" label="Digite seu nome:" value="{!v.nome}" /> <!-- Caixa texto e atribui o valor a variavel -->
+            <br />
+            <lightning:button variant="brand" label="OK" title="Botão OK" onclick="{! c.handleClick }" /> <!--Botao Basico-->
+            <br /><br />
+            Hello {!v.nome}! <!--Usando a variável. "v" = this.-->
+        </p>    
+    </lightning:card>
+    
+
+
+</aura:component>	
