@@ -9,10 +9,10 @@
             var state = response.getState(); //Pega o retorno do response
             
             if(state == "SUCCESS"){
-                console.log(response.getReturnValue()); //Pega o valor
+                component.set('v.opCotacaoReal', response.getReturnValue()); /*Seta valor na view*/
             }
             else{
-                console.log("Erro: " + JSON.stringify(response.getError()));
+                component.set('v.opCotacaoReal', 'Erro ao consultar a cotação.'); /*Seta valor na view*/
             }
         });
 
@@ -21,8 +21,7 @@
     handleOrdem : function(component, event, helper) {
         alert("Codigo da ordem");
     },
-    handleChange : function(component, event, helper) {        
-        console.log(event.getParam("checked"));
+    handleChange : function(component, event, helper) {    
         component.set('v.opMercado', !event.getParam("checked")); /*Seta valor na view*/
     },
 })
