@@ -31,5 +31,10 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
         string price;
     }
 
-    
+    @AuraEnabled
+    public static string getRecordTypeId(String ordemType){
+        String rTypeId = Schema.SObjectType.Ordem__c.getRecordTypeInfosByDeveloperName().get(ordemType).getRecordTypeId();
+        return rTypeId;
+
+    }
 }
