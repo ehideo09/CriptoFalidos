@@ -2,7 +2,7 @@
     handleInit : function(component, event, helper) {
 
         component.set('v.columns', [
-            {label: 'Ordem', fieldName: 'Name', type: 'url'},
+            {label: 'Ordem', fieldName: 'Link__c', type: 'url',typeAttributes: {label: { fieldName: 'Name' }, target: '_blank'}},
             {label: 'Tipo', fieldName: 'Tipo__c', type: 'text'},
             {label: 'Quantidade', fieldName: 'Quantidade__c', type: 'number', typeAttributes: {maximumSignificantDigits: 6}},
             {label: 'Preço', fieldName: 'Preco__c', type: 'number', typeAttributes: {maximumSignificantDigits: 6}},
