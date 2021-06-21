@@ -59,29 +59,26 @@ public with sharing class MercadoTriggerHandler extends TriggerHandler
 
     private void executaOrdemFinal()
     {
-        List<Mercado__c> mercadoList = [SELECT Id, CotacaoAtual__c, (SELECT Id, Preco__c, Status__c FROM Ordens__r WHERE Status__c = 'Aguardando')
-                                        FROM Mercado__c
-                                        WHERE Id IN :trigger.newMap.keySet()];
-
         List<Ordem__c> updateOrdemList = new List<Ordem__c>();
-
-        for(Mercado__c mercado : mercadoList)
+        
+        for(Ordem__c ordem : [SELECT Id, Preco__c, Status__c from Ordem__c
+                              where Mercado__c IN :trigger.newMap.keySet()
+                              and Status__c = 'Aguardando'])
         {
-            for(Ordem__c ordem : mercado.Ordens__r)
-            {
-                Mercado__c mercadoOld = (Mercado__c)trigger.oldMap.Get(mercado.Id);
-                double precoAntigo = mercadoOld.CotacaoAtual__c;
-                double precoOrdem = ordem.preco__c;
-                double preconovo = mercado.CotacaoAtual__c;
+            Mercado__c mercadoOld = (Mercado__c)trigger.oldMap.Get(ordem.Mercado__c);
+            Mercado__c mercadoNew = (Mercado__c)trigger.NewMap.Get(ordem.Mercado__c);
+            double precoAntigo = mercadoOld.CotacaoAtual__c;
+            double precoOrdem = ordem.preco__c;
+            double preconovo = mercadoNew.CotacaoAtual__c;
             
-                if((precoOrdem >=precoAntigo && precoOrdem<= preconovo) || (precoOrdem <=precoAntigo && precoOrdem >= preconovo))
-                {
-                    updateOrdemList.add(new Ordem__c(Id = ordem.Id, Status__c = 'Executada'));
-                }    
-            }
+            if((precoOrdem >=precoAntigo && precoOrdem<= preconovo) || (precoOrdem <=precoAntigo && precoOrdem >= preconovo))
+            {
+                updateOrdemList.add(new Ordem__c(Id = ordem.Id, Status__c = 'Executada'));
+            }    
         }
-
-        update updateOrdemList;
+        
+        if(updateOrdemList.size() > 0)
+            update updateOrdemList;
     }
 
 }
