@@ -87,6 +87,25 @@
         component.find("ordField").forEach(function(f){
             f.reset();
         })
+
+        //Pode atualizar a pagina ou navegar para o registro inserido
+        var navEvt = $A.get("e.force:navigateToSObject");
+        navEvt.setParams({
+        //"recordId": component.get("v.recordId"), //Navega para o objeto principal
+        "recordId": response.Id, //Navega para a pagina do objeto inserido
+        "slideDevName": "related"
+        });
+        
+        navEvt.fire();
+
+        var ordemEvtAction = $A.get("e.c:OrdemEvent");
+        ordemEvtAction.setParams({
+            "Context" : "TradeCmp"
+        });
+
+        ordemEvtAction.fire();
+
+
     },
     hadleError : function(component, event, helper) {
         var toastEvent = $A.get("e.force:showToast");

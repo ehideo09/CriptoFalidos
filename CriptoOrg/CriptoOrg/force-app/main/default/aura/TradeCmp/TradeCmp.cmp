@@ -9,6 +9,7 @@
     <aura:attribute name="selTabId" type="String"  />
 
     <aura:handler name="init" value="{!this}" action="{!c.retrievePrice}"/>
+    <aura:registerEvent name="OrdemEvent" type="c:OrdemEvent"/>
 
     <lightning:card title="Negociar - Preço Atual: " iconName="standard:partner_fund_allocation">
         <aura:set attribute="actions">
