@@ -25,10 +25,28 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
         }
     }
 
-    private Class SymbolPrice
+    @AuraEnabled //Libera o metodo para o JavaSript e o metodo deve ser estatico
+    public static List<SymbolPrice> getPrice()
     {
-        string symbol;
-        string price;
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://api.binance.com/api/v3/ticker/price');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);     
+
+        if (response.getStatusCode() == 200) {
+            List<SymbolPrice> spList = (List<SymbolPrice>)JSON.deserializeStrict(response.getBody(), List<SymbolPrice>.class);
+            return spList; 
+        }
+        else {
+            return null;
+        }
+    }
+
+    public Class SymbolPrice
+    {
+        public string symbol;
+        public string price;
     }
 
     @AuraEnabled
