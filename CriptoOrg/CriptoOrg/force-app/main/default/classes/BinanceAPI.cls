@@ -18,6 +18,7 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
 
         if (response.getStatusCode() == 200) {
             SymbolPrice sp = (SymbolPrice)JSON.deserializeStrict(response.getBody(), SymbolPrice.class);
+            
             return sp.price;
         }
         else {
@@ -26,7 +27,7 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
     }
 
     @AuraEnabled //Libera o metodo para o JavaSript e o metodo deve ser estatico
-    public static List<SymbolPrice> getPrice()
+    public static List<SymbolPrice> getAllMercadoPrice()
     {
         Http http = new Http();
         HttpRequest request = new HttpRequest();

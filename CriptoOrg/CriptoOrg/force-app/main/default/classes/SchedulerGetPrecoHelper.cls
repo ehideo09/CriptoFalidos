@@ -6,7 +6,7 @@ public with sharing class SchedulerGetPrecoHelper {
     {
         Map<string, double> mapSymbolPrice = new Map<string, double>();
 
-        List<BinanceAPI.SymbolPrice> spList = BinanceAPI.getPrice();
+        List<BinanceAPI.SymbolPrice> spList = BinanceAPI.getAllMercadoPrice();
 
         for (BinanceAPI.SymbolPrice sp : spList) {
             mapSymbolPrice.put(sp.symbol,  Double.valueOf(sp.price));

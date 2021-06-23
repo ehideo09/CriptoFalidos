@@ -11,6 +11,7 @@
             if(state == "SUCCESS"){
                 component.set('v.opCotacaoReal', response.getReturnValue()); /*Seta valor na view*/
                 component.set('v.tradePrice', response.getReturnValue()); /*Seta valor na view*/
+                
             }
             else{
                 component.set('v.opCotacaoReal', 'Erro ao consultar a cotação.'); /*Seta valor na view*/
