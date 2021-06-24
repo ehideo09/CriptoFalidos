@@ -4,7 +4,7 @@
         action.setParams({
             "mercadoId" : component.get("v.recordId")
         });
-
+        
         action.setCallback(this, function(response){
             var state = response.getState(); //Pega o retorno do response
             

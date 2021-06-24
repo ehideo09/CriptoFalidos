@@ -9,7 +9,7 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
 
         string pair = mercado.MoedaPrimaria__c + mercado.MoedaSecundaria__c;
         pair = pair.replace('USD', 'USDT');
-
+        
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://api.binance.com/api/v3/ticker/price?symbol=' + pair);
@@ -34,7 +34,7 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
         request.setEndpoint('https://api.binance.com/api/v3/ticker/price');
         request.setMethod('GET');
         HttpResponse response = http.send(request);     
-
+        
         if (response.getStatusCode() == 200) {
             List<SymbolPrice> spList = (List<SymbolPrice>)JSON.deserializeStrict(response.getBody(), List<SymbolPrice>.class);
             return spList; 
@@ -46,8 +46,8 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
 
     public Class SymbolPrice
     {
-        public string symbol;
-        public string price;
+        public string symbol {get;set;}
+        public string price {get;set;}
     }
 
     @AuraEnabled
