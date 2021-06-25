@@ -26,7 +26,7 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
         }
     }
 
-    @AuraEnabled //Libera o metodo para o JavaSript e o metodo deve ser estatico
+    @AuraEnabled(cacheable=true) //Libera o metodo para o JavaSript e o metodo deve ser estatico
     public static List<SymbolPrice> getAllMercadoPrice()
     {
         Http http = new Http();
@@ -44,9 +44,29 @@ public class BinanceAPI //with sharing - Obedece os rules do salesforce - withou
         }
     }
 
+    @AuraEnabled(cacheable=true) //cacheable=true Armazena o primeiro resultado em cache enquanto a sessão estiver aberta
+    public static List<SymbolPrice> getPriceFiltered(string searchKey)
+    {
+        List<SymbolPrice> assets = getAllMercadoPrice();
+        List<SymbolPrice> assetListResponse = new List<SymbolPrice>();
+
+        for (SymbolPrice sp : assets) {
+            
+            if(sp.symbol.startsWithIgnoreCase(searchKey)){
+                assetListResponse.add(sp);
+            }
+        }
+
+        return assetListResponse;
+
+    }
+
     public Class SymbolPrice
     {
+        @AuraEnabled
         public string symbol {get;set;}
+
+        @AuraEnabled
         public string price {get;set;}
     }
 

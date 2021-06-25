@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Ativos" icon-name="standard:partner_fund_allocation">
+        <lightning-input name="searchKey" label="Pesquisa" type="search" style="width:20em; margin:20px" onchange={handleKeyChange} value={searchKey}></lightning-input>
+        <div style="height: 300px; padding-right:20px; padding-left:20px">
+            <lightning-datatable
+                    key-field="symbol"
+                    data={data}
+                    columns={columns}>
+            </lightning-datatable>
+        </div>    
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_x-large">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+    </lightning-card>
+</template>
